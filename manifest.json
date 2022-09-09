@@ -6,7 +6,8 @@
   "author": "Ade Adeola",
   "permissions": [
     "identity",
-    "bookmarks"
+    "bookmarks",
+    "tabs"
   ],
   "oauth2": {
     "client_id": "965938222051-ceeprq647i0e89pr8j66vm76q7s1l8e5.apps.googleusercontent.com",

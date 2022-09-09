@@ -13,22 +13,27 @@ const render = (elem) => {
   }
 };
 
-const getInfo = () => {
-  const list = document.head.children;
-  let title = "";
-  const url = document.location.href;
-  for (const item of list) {
-    if (item.tagName === "TITLE") title = item.textContent || "";
-  }
+/**
+ * to get the url and title of the current tab
+ * @returns
+ */
+async function getCurrentTabInfo() {
+  let queryOptions = { active: true, lastFocusedWindow: true };
+  // `tab` will either be a `tabs.Tab` instance or `undefined`.
+  let [tab] = await chrome.tabs.query(queryOptions);
+  const title = tab.title;
+  const url = tab.url;
+  console.log(title, url);
   return {
     title,
     url,
   };
-};
+  // return tab;
+}
 
-authControl((user) => {
+authControl(async (user) => {
   if (user) {
-    const { title, url } = getInfo();
+    const { title, url } = await getCurrentTabInfo();
 
     const elem = createElement({
       element: "div",
@@ -44,7 +49,6 @@ authControl((user) => {
     elem.appendChild(logout);
     render(elem);
   } else {
-    console.log("no user");
     const elem = createElement({
       element: "button",
       innerHTML: "Login",
@@ -54,6 +58,5 @@ authControl((user) => {
       startAuth(true);
     });
     render(elem);
-    console.log("no user");
   }
 });
