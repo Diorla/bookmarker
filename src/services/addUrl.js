@@ -1,21 +1,21 @@
 // @ts-check
 import { getFirestore, setDoc, doc } from "firebase/firestore";
-import { v4 } from "uuid";
 
-const addUrl = async (
-  /** @type {string} */ userId,
-  /** @type {any} */ data
-) => {
+/**
+ * @param {string} userId
+ * @param {any} data
+ * @param {string} docId
+ */
+const addUrl = async (userId, data, docId) => {
   const db = getFirestore();
-  const id = v4();
-  const docRef = doc(db, `users/${userId}/links`, id);
+  const docRef = doc(db, `users/${userId}/links`, docId);
 
   //TODO: Update the folders
   /**
    * Update the users/folders array, it will be a merge
    * So that there won't be a duplicate
    */
-  return setDoc(docRef, { id, ...data }, { merge: true });
+  return setDoc(docRef, { id: docId, ...data }, { merge: true });
 };
 
 export default addUrl;

@@ -5,7 +5,7 @@ import createFirebaseApp from "../firebaseApp";
 const signOut = () => {
   const app = createFirebaseApp();
   const auth = getAuth(app);
-  auth.signOut();
+  return auth.signOut();
 };
 
 export default signOut;

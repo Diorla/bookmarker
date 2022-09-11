@@ -12,7 +12,7 @@
 }
 
 body {
-  min-width: 300px;
+  width: 300px;
 }
 
 a {
@@ -71,7 +71,7 @@ input:focus {
 
 button {
   border: none;
-  padding: 4px 6px;
+  padding: 8px 12px;
   border-radius: 4px;
   background: teal;
   color: white;
@@ -80,4 +80,35 @@ button {
 
 button:hover {
   background: rgb(16, 163, 163);
+}
+
+.popup-control {
+  display: flex;
+  justify-content: space-around;
+}
+
+button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.tag {
+  border: 1px solid teal;
+  border-radius: 16px;
+  padding: 2px 4px;
+  margin: 4px;
+}
+
+.popup-control {
+  margin: 8px 0;
+}
+
+#tags-wrapper {
+  margin: 8px 0;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
