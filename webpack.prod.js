@@ -2,7 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const WorkboxPlugin = require("workbox-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
@@ -24,16 +23,10 @@ module.exports = {
     }),
     new CleanWebpackPlugin({
       dry: true,
-      verbose: true,
-      cleanStaleWebpackAssets: true,
+      verbose: false,
       protectWebpackAssets: false,
     }),
     new MiniCssExtractPlugin(),
-    // service worker here
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-    }),
   ],
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
