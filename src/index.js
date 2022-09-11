@@ -1,21 +1,14 @@
 // @ts-check
+import signUpForm from "./components/signUpForm";
 import authControl from "./modules/authControl";
 import createElement from "./modules/createElement";
 import signOut from "./modules/signOut";
-import startAuth from "./modules/startAuth";
+import { render } from "./render";
 import addUrl from "./services/addUrl";
 import "./styles.scss";
 
 const app = document.getElementById("app");
-if (app) app.innerHTML = "";
-
-const render = (/** @type {Node} */ elem) => {
-  if (app) {
-    app.innerHTML = "";
-    app.appendChild(elem);
-  }
-};
-
+if (app) app.innerHTML = "Loading";
 /**
  * to get the url and title of the current tab
  * @returns
@@ -39,20 +32,20 @@ authControl(async (user) => {
     const { title, url } = await getCurrentTabInfo();
 
     const elem = createElement({
-      element: "div",
+      tagName: "div",
       innerHTML: `title: ${title}, url: ${url}`,
       classList: ["row"],
     });
 
     const logout = createElement({
-      element: "button",
+      tagName: "button",
       innerHTML: "Logout",
       classList: ["btn"],
     });
     logout.addEventListener("click", signOut);
 
     const addUrlBtn = createElement({
-      element: "button",
+      tagName: "button",
       innerHTML: "Add url",
       classList: ["btn"],
     });
@@ -63,14 +56,6 @@ authControl(async (user) => {
     elem.appendChild(logout);
     render(elem);
   } else {
-    const elem = createElement({
-      element: "button",
-      innerHTML: "Login",
-      classList: ["btn", "primary"],
-    });
-    elem.addEventListener("click", () => {
-      startAuth(true);
-    });
-    render(elem);
+    signUpForm();
   }
 });
