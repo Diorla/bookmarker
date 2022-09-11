@@ -7,18 +7,18 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: "./src/client/js/index.js",
+    index: "./src/index.js",
   },
   mode: "production",
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    publicPath: "/",
+    publicPath: "./",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/client/views/index.html",
+      template: "./src/index.html",
       filename: "./index.html",
       chunks: ["index"],
     }),
