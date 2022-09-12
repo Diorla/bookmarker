@@ -1,4 +1,3 @@
-// @ts-check
 import { v4 } from "uuid";
 import createElement from "../modules/createElement";
 import signOut from "../services/signOut";
@@ -6,7 +5,8 @@ import { render } from "../render";
 import addUrl from "../services/addUrl";
 import deleteUrl from "../services/deleteUrl";
 import getUrl from "../services/getUrl";
-
+import { User } from "firebase/auth";
+//  as HTMLInputElement
 /**
  * to get the url and title of the current tab
  * @returns
@@ -23,9 +23,9 @@ export async function getCurrentTabInfo() {
   };
 }
 
-export default async function bookmark(user) {
+export default async function bookmark(user: User) {
   const { title, url } = await getCurrentTabInfo();
-  const currentTags = [];
+  const currentTags: string[] = [];
   const list = await getUrl(user.uid, url);
   const data = list[0];
 
@@ -58,12 +58,12 @@ export default async function bookmark(user) {
   render(elem);
 
   const logoutElem = document.getElementById("logout");
-  const titleElem = document.getElementById("title");
+  const titleElem = document.getElementById("title") as HTMLInputElement;
   const urlElem = document.getElementById("url");
   logoutElem?.addEventListener("click", signOut);
   const removeUrlElem = document.getElementById("remove-url");
   const addUrlElem = document.getElementById("add-url");
-  const tagInputElem = document.getElementById("tags");
+  const tagInputElem = document.getElementById("tags") as HTMLInputElement;
   const tagsWrapperElem = document.getElementById("tags-wrapper");
 
   titleElem.value = data?.title || title;

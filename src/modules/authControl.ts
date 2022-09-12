@@ -1,15 +1,10 @@
-// @ts-check
 import firebaseApp from "../firebaseApp";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 
 const app = firebaseApp();
 const auth = getAuth(app);
 
-/**
- * For managing user info
- * @param {(arg0: import("@firebase/auth").User | null) => void} handleUser
- */
-const authControl = (handleUser) => {
+const authControl = (handleUser: (arg0: User | null) => void) => {
   const unsubscriber = onAuthStateChanged(auth, async (user) => {
     handleUser(user);
   });

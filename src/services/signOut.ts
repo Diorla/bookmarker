@@ -1,4 +1,3 @@
-// @ts-check
 import { getAuth } from "firebase/auth";
 import createFirebaseApp from "../firebaseApp";
 

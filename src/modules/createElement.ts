@@ -1,5 +1,12 @@
-// @ts-check
-const createElement = ({ tagName, innerHTML, classList = [] }) => {
+const createElement = ({
+  tagName,
+  innerHTML,
+  classList = [],
+}: {
+  tagName: string;
+  innerHTML: string;
+  classList?: string[];
+}) => {
   const elem = document.createElement(tagName);
   elem.innerHTML = innerHTML;
   elem.classList.add(...classList);

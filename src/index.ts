@@ -1,4 +1,3 @@
-// @ts-check
 import signUpForm from "./components/signUpForm";
 import authControl from "./modules/authControl";
 import bookmark from "./components/bookmark";

@@ -1,4 +1,3 @@
-// @ts-check
 import createElement from "../modules/createElement";
 import { render } from "../render";
 import signInWithEmail from "../services/signInWithEmail";
@@ -28,8 +27,10 @@ export default function signInForm() {
   render(elem);
 
   document.getElementById("login")?.addEventListener("click", () => {
-    const email = document.getElementById("user_email")?.value;
-    const password = document.getElementById("pwd")?.value;
+    const email = (document.getElementById("user_email") as HTMLInputElement)
+      ?.value;
+    const password = (document.getElementById("pwd") as HTMLInputElement)
+      ?.value;
 
     if (!email) {
       document.getElementById("error-div").textContent = "Please provide email";

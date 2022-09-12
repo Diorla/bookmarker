@@ -1,4 +1,3 @@
-// @ts-check
 import createElement from "../modules/createElement";
 import { render } from "../render";
 import signUpWithEmail from "../services/signUpWithEmail";
@@ -38,9 +37,12 @@ export default function signUpForm() {
     });
 
   document.getElementById("create-account")?.addEventListener("click", () => {
-    const email = document.getElementById("user_email")?.value;
-    const password = document.getElementById("pwd")?.value;
-    const re_pwd = document.getElementById("re_pwd")?.value;
+    const email = (document.getElementById("user_email") as HTMLInputElement)
+      ?.value;
+    const password = (document.getElementById("pwd") as HTMLInputElement)
+      ?.value;
+    const re_pwd = (document.getElementById("re_pwd") as HTMLInputElement)
+      ?.value;
 
     if (!email) {
       document.getElementById("error-div").textContent = "Please provide email";

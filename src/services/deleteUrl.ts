@@ -1,11 +1,6 @@
-// @ts-check
 import { doc, deleteDoc, getFirestore } from "firebase/firestore";
 
-/**
- * @param {string} userId
- * @param {string} docId
- */
-export default function deleteUrl(userId, docId) {
+export default function deleteUrl(userId: string, docId: string) {
   const db = getFirestore();
   const docRef = doc(db, `users/${userId}/links`, docId);
 
