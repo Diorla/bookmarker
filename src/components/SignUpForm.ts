@@ -1,8 +1,8 @@
 import createElement from "../modules/createElement";
 import { render } from "../render";
 import signUpWithEmail from "../services/signUpWithEmail";
-import signInForm from "./signInForm";
-export default function signUpForm() {
+import SignInForm from "./SignInForm";
+export default function SignUpForm() {
   const innerHTML = `
     <div class="form">
       <div class="form-control">
@@ -33,7 +33,7 @@ export default function signUpForm() {
   document
     .getElementById("new-member-button")
     ?.addEventListener("click", () => {
-      signInForm();
+      SignInForm();
     });
 
   document.getElementById("create-account")?.addEventListener("click", () => {

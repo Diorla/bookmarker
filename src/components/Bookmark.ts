@@ -23,7 +23,7 @@ export async function getCurrentTabInfo() {
   };
 }
 
-export default async function bookmark(user: User) {
+export default async function Bookmark(user: User) {
   const { title, url } = await getCurrentTabInfo();
   const currentTags: string[] = [];
   const list = await getUrl(user.uid, url);
