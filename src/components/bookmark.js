@@ -28,7 +28,7 @@ export default async function bookmark(user) {
   const currentTags = [];
   const list = await getUrl(user.uid, url);
   const data = list[0];
-  console.log(list);
+
   const innerHTML = `<div>
     <div id="url"></div>
     <hr/>
@@ -43,7 +43,7 @@ export default async function bookmark(user) {
     <div id="tags-wrapper"></div>
     <div class="popup-control">
       <button id="add-url">Save</button>
-      <button id="remove-url" data-id="" disabled>Remove</button>
+      <button id="remove-url" disabled>Remove</button>
     </div>
     <div class="center">
       <button class="btn-link" id="logout">Logout</button>
@@ -66,12 +66,16 @@ export default async function bookmark(user) {
   const tagInputElem = document.getElementById("tags");
   const tagsWrapperElem = document.getElementById("tags-wrapper");
 
-  titleElem.value = title;
+  titleElem.value = data?.title || title;
   urlElem.textContent = url;
   const docId = data?.id || v4();
   addUrlElem?.addEventListener("click", () => {
     addUrlElem?.setAttribute("disabled", "true");
-    addUrl(user.uid, { title, url, tags: currentTags }, docId).then(() => {
+    addUrl(
+      user.uid,
+      { title: titleElem.value, url, tags: currentTags },
+      docId
+    ).then(() => {
       removeUrlElem?.removeAttribute("disabled");
     });
   });
