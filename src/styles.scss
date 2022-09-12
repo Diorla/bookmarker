@@ -1,3 +1,22 @@
+$black: #333;
+$white: #fff;
+$primary-color: #008080;
+$dark-primary-color: darken($primary-color, 10%);
+$light-primary-color: lighten($primary-color, 10%);
+$secondary-color: #800000;
+$dark-secondary-color: darken($secondary-color, 10%);
+$light-secondary-color: lighten($secondary-color, 10%);
+
+$link-color: #646cff;
+$link-color-hover: #535bf2;
+
+$shade: silver;
+$dark-shade: gray;
+
+$success-color: #18ac18;
+$error-color: crimson;
+$warning-color: #ffa600;
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -17,16 +36,16 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: $link-color;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: $link-color-hover;
 }
 
 .btn-link {
   font-weight: 500;
-  color: #646cff;
+  color: $link-color;
   text-decoration: inherit;
   background: transparent;
   border: none;
@@ -39,7 +58,7 @@ a:hover {
   text-decoration: underline;
 }
 input {
-  border: 1px solid silver;
+  border: 1px solid $shade;
   padding: 4px;
   border-radius: 4px;
   outline: none;
@@ -47,11 +66,11 @@ input {
 }
 
 input:focus {
-  border: 1px solid gray;
+  border: 1px solid $dark-shade;
 }
 
 #error-div {
-  color: crimson;
+  color: $error-color;
 }
 
 .form {
@@ -73,13 +92,13 @@ button {
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
-  background: teal;
-  color: white;
+  background: $primary-color;
+  color: $white;
   cursor: pointer;
 }
 
 button:hover {
-  background: rgb(16, 163, 163);
+  background: $light-primary-color;
 }
 
 .popup-control {
@@ -93,7 +112,7 @@ button:disabled {
 }
 
 .tag {
-  border: 1px solid teal;
+  border: 1px solid $dark-primary-color;
   border-radius: 16px;
   padding: 2px 4px;
   margin: 4px;
@@ -111,4 +130,22 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: $white;
+    color: $black;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: $white;
+    background-color: $black;
+  }
+  input {
+    background-color: $black;
+    color: $white;
+  }
 }

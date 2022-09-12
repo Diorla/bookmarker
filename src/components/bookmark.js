@@ -1,7 +1,7 @@
 // @ts-check
 import { v4 } from "uuid";
 import createElement from "../modules/createElement";
-import signOut from "../modules/signOut";
+import signOut from "../services/signOut";
 import { render } from "../render";
 import addUrl from "../services/addUrl";
 import deleteUrl from "../services/deleteUrl";
@@ -33,8 +33,8 @@ export default async function bookmark(user) {
     <div id="url"></div>
     <hr/>
     <div class="form-control">
-      <label for="tags">Name</label>
-      <input id="title" />
+      <label for="title">Name</label>
+      <input id="title" name="title"/>
     </div>
     <div class="form-control">
       <label for="tags">Tags</label>
