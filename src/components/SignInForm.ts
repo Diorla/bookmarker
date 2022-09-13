@@ -1,7 +1,8 @@
-import createElement from "../modules/createElement";
+import createComponent from "../modules/createComponent";
 import { render } from "../render";
 import signInWithEmail from "../services/signInWithEmail";
 import SignUpForm from "./SignUpForm";
+
 export default function SignInForm() {
   const innerHTML = `
     <div class="form">
@@ -20,7 +21,7 @@ export default function SignInForm() {
       <button id="login">Sign in</button>
     </div>
   `;
-  const elem = createElement({
+  const elem = createComponent({
     tagName: "div",
     innerHTML,
   });

@@ -1,27 +1,12 @@
 import { v4 } from "uuid";
-import createElement from "../modules/createElement";
+import createComponent from "../modules/createComponent";
 import signOut from "../services/signOut";
 import { render } from "../render";
 import addUrl from "../services/addUrl";
 import deleteUrl from "../services/deleteUrl";
 import getUrl from "../services/getUrl";
 import { User } from "firebase/auth";
-//  as HTMLInputElement
-/**
- * to get the url and title of the current tab
- * @returns
- */
-export async function getCurrentTabInfo() {
-  let queryOptions = { active: true, lastFocusedWindow: true };
-  // `tab` will either be a `tabs.Tab` instance or `undefined`.
-  let [tab] = await chrome.tabs.query(queryOptions);
-  const title = tab.title;
-  const url = tab.url;
-  return {
-    title,
-    url,
-  };
-}
+import getCurrentTabInfo from "../modules/getCurrentTabInfo";
 
 export default async function Bookmark(user: User) {
   const { title, url } = await getCurrentTabInfo();
@@ -50,7 +35,7 @@ export default async function Bookmark(user: User) {
     </div>
   </div>`;
 
-  const elem = createElement({
+  const elem = createComponent({
     tagName: "div",
     innerHTML,
   });
@@ -60,12 +45,12 @@ export default async function Bookmark(user: User) {
   const logoutElem = document.getElementById("logout");
   const titleElem = document.getElementById("title") as HTMLInputElement;
   const urlElem = document.getElementById("url");
-  logoutElem?.addEventListener("click", signOut);
   const removeUrlElem = document.getElementById("remove-url");
   const addUrlElem = document.getElementById("add-url");
   const tagInputElem = document.getElementById("tags") as HTMLInputElement;
   const tagsWrapperElem = document.getElementById("tags-wrapper");
 
+  logoutElem?.addEventListener("click", signOut);
   titleElem.value = data?.title || title;
   urlElem.textContent = url;
   const docId = data?.id || v4();

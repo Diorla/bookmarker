@@ -1,4 +1,4 @@
-const createElement = ({
+const createComponent = ({
   tagName,
   innerHTML,
   classList = [],
@@ -13,4 +13,4 @@ const createElement = ({
   return elem;
 };
 
-export default createElement;
+export default createComponent;
