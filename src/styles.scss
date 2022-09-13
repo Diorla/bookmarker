@@ -11,6 +11,7 @@ $link-color: #646cff;
 $link-color-hover: #535bf2;
 
 $shade: silver;
+$light-shade: lighten($shade, 20%);
 $dark-shade: gray;
 
 $success-color: #18ac18;
@@ -38,9 +39,9 @@ a {
   font-weight: 500;
   color: $link-color;
   text-decoration: inherit;
-}
-a:hover {
-  color: $link-color-hover;
+  &:hover {
+    color: $link-color-hover;
+  }
 }
 
 .btn-link {
@@ -51,22 +52,21 @@ a:hover {
   border: none;
   padding: 0;
   cursor: pointer;
+  &:hover {
+    background: transparent;
+    text-decoration: underline;
+  }
 }
 
-.btn-link:hover {
-  background: transparent;
-  text-decoration: underline;
-}
 input {
   border: 1px solid $shade;
   padding: 4px;
   border-radius: 4px;
   outline: none;
   flex: 1;
-}
-
-input:focus {
-  border: 1px solid $dark-shade;
+  &:focus {
+    border: 1px solid $dark-shade;
+  }
 }
 
 #error-div {
@@ -76,16 +76,15 @@ input:focus {
 .form {
   display: flex;
   flex-direction: column;
+  & > button {
+    align-self: center;
+  }
 }
 
 .form-control {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.form > button {
-  align-self: center;
 }
 
 button {
@@ -95,10 +94,13 @@ button {
   background: $primary-color;
   color: $white;
   cursor: pointer;
-}
-
-button:hover {
-  background: $light-primary-color;
+  &:hover {
+    background: $light-primary-color;
+  }
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
 
 .popup-control {
@@ -106,16 +108,15 @@ button:hover {
   justify-content: space-around;
 }
 
-button:disabled {
-  opacity: 0.2;
-  cursor: not-allowed;
-}
-
 .tag {
   border: 1px solid $dark-primary-color;
   border-radius: 16px;
-  padding: 2px 4px;
-  margin: 4px;
+  padding: 0 4px;
+  margin: 4px 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: $shade;
+  }
 }
 
 .popup-control {
@@ -124,6 +125,9 @@ button:disabled {
 
 #tags-wrapper {
   margin: 8px 0;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .center {
@@ -147,5 +151,15 @@ button:disabled {
   input {
     background-color: $black;
     color: $white;
+  }
+}
+
+#close {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: end;
+  &:hover {
+    color: $primary-color;
   }
 }

@@ -15,6 +15,7 @@ export default async function Bookmark(user: User) {
   const data = list[0];
 
   const innerHTML = `<div>
+    <div id=close>×</div>
     <div id="url"></div>
     <hr/>
     <div class="form-control">
@@ -49,6 +50,7 @@ export default async function Bookmark(user: User) {
   const addUrlElem = document.getElementById("add-url");
   const tagInputElem = document.getElementById("tags") as HTMLInputElement;
   const tagsWrapperElem = document.getElementById("tags-wrapper");
+  const closeElem = document.getElementById("close");
 
   logoutElem?.addEventListener("click", signOut);
   titleElem.value = data?.title || title;
@@ -65,13 +67,33 @@ export default async function Bookmark(user: User) {
     });
   });
 
+  const addTags = () => {
+    let str = "";
+    currentTags.forEach(
+      (item, idx) => (str += `<span class=tag data-key=${idx}>${item}</span>`)
+    );
+    tagsWrapperElem.innerHTML = str;
+
+    const tagSpanElem = document.querySelectorAll("#tags-wrapper > span");
+
+    tagSpanElem.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const {
+          dataset: { key },
+        } = item as HTMLElement;
+        console.log(currentTags);
+        currentTags.splice(Number(key), 1);
+        console.log(currentTags);
+        addTags();
+      });
+    });
+  };
+
   tagInputElem?.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       currentTags.push(tagInputElem?.value);
       tagInputElem.value = "";
-      let str = "";
-      currentTags.forEach((item) => (str += `<span class=tag>${item}</span>`));
-      tagsWrapperElem.innerHTML = str;
+      addTags();
     }
   });
   removeUrlElem?.addEventListener("click", () => {
@@ -92,5 +114,9 @@ export default async function Bookmark(user: User) {
 
   titleElem?.addEventListener("input", () => {
     addUrlElem?.removeAttribute("disabled");
+  });
+
+  closeElem.addEventListener("click", () => {
+    window.close();
   });
 }
