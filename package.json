@@ -7,9 +7,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "webpack --config webpack.prod.js",
-    "build:dev": "webpack --config webpack.dev.js --watch",
-    "start:server": "nodemon src/server/index.js",
-    "start": "concurrently \"npm run build:dev\" \"npm run start:server\""
+    "start": "webpack --config webpack.dev.js --watch",
+    "pack": "sh pkg.sh"
   },
   "keywords": [],
   "author": "Ade Adeola",
@@ -24,6 +23,7 @@
     "@babel/preset-env": "^7.16.11",
     "@types/chrome": "^0.0.196",
     "@types/uuid": "^8.3.4",
+    "archiver": "^5.3.1",
     "babel-jest": "^27.5.1",
     "clean-webpack-plugin": "^4.0.0",
     "colors": "^1.4.0",
