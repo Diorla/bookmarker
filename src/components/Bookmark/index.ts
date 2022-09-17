@@ -1,40 +1,18 @@
 import { v4 } from "uuid";
-import createComponent from "../modules/createComponent";
-import signOut from "../services/signOut";
-import { render } from "../render";
-import addUrl from "../services/addUrl";
-import deleteUrl from "../services/deleteUrl";
-import getUrl from "../services/getUrl";
+import createComponent from "../../modules/createComponent";
+import signOut from "../../services/signOut";
+import { render } from "../../render";
+import addUrl from "../../services/addUrl";
+import deleteUrl from "../../services/deleteUrl";
+import getUrl from "../../services/getUrl";
 import { User } from "firebase/auth";
-import getCurrentTabInfo from "../modules/getCurrentTabInfo";
+import getCurrentTabInfo from "../../modules/getCurrentTabInfo";
+import innerHTML from "./innerHTML";
 
 export default async function Bookmark(user: User) {
-  const { title, url } = await getCurrentTabInfo();
-  const currentTags: string[] = [];
+  const { title, url, favicon } = await getCurrentTabInfo();
   const list = await getUrl(user.uid, url);
   const data = list[0];
-
-  const innerHTML = `<div>
-    <div id=close>×</div>
-    <div id="url"></div>
-    <hr/>
-    <div class="form-control">
-      <label for="title">Name</label>
-      <input id="title" name="title"/>
-    </div>
-    <div class="form-control">
-      <label for="tags">Tags</label>
-      <input type="text" id="tags" name="tags"/>
-    </div>
-    <div id="tags-wrapper"></div>
-    <div class="popup-control">
-      <button id="add-url">Save</button>
-      <button id="remove-url" disabled>Remove</button>
-    </div>
-    <div class="center">
-      <button class="btn-link" id="logout">Logout</button>
-    </div>
-  </div>`;
 
   const elem = createComponent({
     tagName: "div",
@@ -53,14 +31,17 @@ export default async function Bookmark(user: User) {
   const closeElem = document.getElementById("close");
 
   logoutElem?.addEventListener("click", signOut);
+
   titleElem.value = data?.title || title;
   urlElem.textContent = url;
   const docId = data?.id || v4();
+  const currentTags: string[] = data?.tags || [];
+
   addUrlElem?.addEventListener("click", () => {
     addUrlElem?.setAttribute("disabled", "true");
     addUrl(
       user.uid,
-      { title: titleElem.value, url, tags: currentTags },
+      { favicon, title: titleElem.value, url, tags: currentTags },
       docId
     ).then(() => {
       removeUrlElem?.removeAttribute("disabled");
@@ -77,13 +58,12 @@ export default async function Bookmark(user: User) {
     const tagSpanElem = document.querySelectorAll("#tags-wrapper > span");
 
     tagSpanElem.forEach((item) => {
-      item.addEventListener("click", (e) => {
+      item.addEventListener("click", () => {
         const {
           dataset: { key },
         } = item as HTMLElement;
-        console.log(currentTags);
         currentTags.splice(Number(key), 1);
-        console.log(currentTags);
+        addUrlElem?.removeAttribute("disabled");
         addTags();
       });
     });
@@ -94,6 +74,7 @@ export default async function Bookmark(user: User) {
       currentTags.push(tagInputElem?.value);
       tagInputElem.value = "";
       addTags();
+      addUrlElem?.removeAttribute("disabled");
     }
   });
   removeUrlElem?.addEventListener("click", () => {
@@ -105,8 +86,7 @@ export default async function Bookmark(user: User) {
   if (data) {
     addUrlElem?.setAttribute("disabled", "true");
     removeUrlElem?.removeAttribute("disabled");
-    const { tags = [] } = data;
-    currentTags.push(...tags);
+
     let str = "";
     currentTags.forEach((item) => (str += `<span class=tag>${item}</span>`));
     tagsWrapperElem.innerHTML = str;
@@ -119,4 +99,5 @@ export default async function Bookmark(user: User) {
   closeElem.addEventListener("click", () => {
     window.close();
   });
+  addTags();
 }
