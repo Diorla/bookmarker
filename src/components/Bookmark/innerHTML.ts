@@ -10,6 +10,10 @@ const innerHTML = `<div>
       <label for="tags">Tags</label>
       <input type="text" id="tags" name="tags"/>
     </div>
+    <div class="form-control hide" id="desc-wrapper">
+      <label for="description" id="desc-label">Description <span>></span></label>
+      <textarea name="description" id="description" cols="30" rows="4" ></textarea>
+    </div>
     <div id="tags-wrapper"></div>
     <div class="popup-control">
       <button id="add-url">Save</button>

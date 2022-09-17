@@ -58,12 +58,14 @@ a {
   }
 }
 
-input {
+input,
+textarea {
   border: 1px solid $shade;
   padding: 4px;
   border-radius: 4px;
   outline: none;
   flex: 1;
+  resize: vertical;
   &:focus {
     border: 1px solid $dark-shade;
   }
@@ -162,4 +164,15 @@ button {
   &:hover {
     color: $primary-color;
   }
+}
+
+.hide span {
+  transform: rotate(90deg);
+}
+.hide > textarea {
+  display: none;
+}
+
+#desc-wrapper > label {
+  cursor: pointer;
 }

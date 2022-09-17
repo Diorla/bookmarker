@@ -29,19 +29,35 @@ export default async function Bookmark(user: User) {
   const tagInputElem = document.getElementById("tags") as HTMLInputElement;
   const tagsWrapperElem = document.getElementById("tags-wrapper");
   const closeElem = document.getElementById("close");
+  const descLabelElem = document.getElementById("desc-label");
+  const descWrapperElem = document.getElementById("desc-wrapper");
+  const descElem = document.getElementById(
+    "description"
+  ) as HTMLTextAreaElement;
 
   logoutElem?.addEventListener("click", signOut);
-
+  descLabelElem?.addEventListener("click", () => {
+    if (descWrapperElem.classList.contains("hide"))
+      descWrapperElem.classList.remove("hide");
+    else descWrapperElem.classList.add("hide");
+  });
   titleElem.value = data?.title || title;
   urlElem.textContent = url;
   const docId = data?.id || v4();
   const currentTags: string[] = data?.tags || [];
+  descElem.value = data?.description || "";
 
   addUrlElem?.addEventListener("click", () => {
     addUrlElem?.setAttribute("disabled", "true");
     addUrl(
       user.uid,
-      { favicon, title: titleElem.value, url, tags: currentTags },
+      {
+        favicon,
+        title: titleElem.value,
+        url,
+        tags: currentTags,
+        description: descElem.value,
+      },
       docId
     ).then(() => {
       removeUrlElem?.removeAttribute("disabled");
@@ -93,6 +109,9 @@ export default async function Bookmark(user: User) {
   }
 
   titleElem?.addEventListener("input", () => {
+    addUrlElem?.removeAttribute("disabled");
+  });
+  descElem?.addEventListener("input", () => {
     addUrlElem?.removeAttribute("disabled");
   });
 
