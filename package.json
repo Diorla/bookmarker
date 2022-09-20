@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack --config webpack.dev.js --watch",
-    "pack": "sh pkg.sh"
+    "pkg": "sh pkg.sh"
   },
   "keywords": [],
   "author": "Ade Adeola",

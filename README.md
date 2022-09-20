@@ -16,7 +16,7 @@
     - [```npm run build```](#npm-run-build)
     - [```npm run test```](#npm-run-test)
     - [```npm run test:watch```](#npm-run-testwatch)
-    - [```npm run pack```](#npm-run-pack)
+    - [```npm run pkg```](#npm-run-pkg)
 - [Technologies](#technologies)
   - [HTML](#html)
   - [SCSS](#scss)
@@ -77,7 +77,7 @@ To test using jest
 
 To test in watch mode
 
-### ```npm run pack```
+### ```npm run pkg```
 
 This will generate a zip file that can be uploaded to chrome extension developer page. It runs a shell script.
 

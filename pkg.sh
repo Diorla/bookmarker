@@ -1,3 +1,10 @@
+# delete the old folder
+rm -r -f bookmarker.zip
+rm -r -f build/
+
+# create target folder
+mkdir build/
+
 # copy the required files
 cp -R assets/ build/assets
 cp -R dist/ build/dist
