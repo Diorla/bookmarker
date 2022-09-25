@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import styled from "styled-components";
+import Form from "./containers/form";
+import useUser from "./hooks/useUser";
+import signOut from "./services/signOut";
 
+const Container = styled.div`
+  background: ${({ theme }) => theme.greyLight1};
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+`;
 function App() {
-  const [count, setCount] = useState(0)
+  const { user, loading } = useUser();
 
+  if (loading) return <Container>This is loading</Container>;
+  if (user?.uid)
+    return (
+      <Container>
+        <div>Welcome {user?.displayName}</div>
+        <button onClick={() => signOut()}>Sign out</button>
+      </Container>
+    );
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Container>
+      <Form />
+    </Container>
+  );
 }
 
-export default App
+export default App;
