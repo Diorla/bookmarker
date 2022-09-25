@@ -156,6 +156,12 @@ button {
   }
 }
 
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #close {
   font-size: 24px;
   font-weight: bold;

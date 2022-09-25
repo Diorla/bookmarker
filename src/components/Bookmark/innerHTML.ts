@@ -1,5 +1,9 @@
 const innerHTML = `<div>
-    <div id=close>×</div>
+    <div class="close">
+      <a href="https://bookmarker-one.vercel.app/" id="user-email" target="_blank">adedotstar@yahoo.com</a>
+      <span id=close>×</span>
+    </div>
+    <hr/>
     <div id="url"></div>
     <hr/>
     <div class="form-control">
