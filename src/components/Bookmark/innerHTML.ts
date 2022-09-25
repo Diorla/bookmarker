@@ -1,6 +1,6 @@
 const innerHTML = `<div>
     <div class="close">
-      <a href="https://bookmarker-one.vercel.app/" id="user-email" target="_blank">adedotstar@yahoo.com</a>
+      <a href="https://bookmarker-one.vercel.app/" id="user-email" target="_blank"></a>
       <span id=close>×</span>
     </div>
     <hr/>

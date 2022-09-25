@@ -34,6 +34,9 @@ export default async function Bookmark(user: User) {
   const descElem = document.getElementById(
     "description"
   ) as HTMLTextAreaElement;
+  const userEmail = document.getElementById("user-email");
+
+  userEmail.innerHTML = user.email;
 
   logoutElem?.addEventListener("click", signOut);
   descLabelElem?.addEventListener("click", () => {
