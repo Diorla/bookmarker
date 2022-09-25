@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "description": "For sharing bookmarks across multiple browsers",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",

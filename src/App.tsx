@@ -1,10 +1,12 @@
 import Link from "./components/link";
-import Form from "./containers/form";
-import Home from "./containers/home";
 import useUser from "./hooks/useUser";
 import signOut from "./services/signOut";
 import spinner from "./assets/spinner.gif";
 import Container from "./components/Container";
+
+import React from "react";
+const Home = React.lazy(() => import("./containers/home"));
+const Form = React.lazy(() => import("./containers/form"));
 
 function App() {
   const { user, loading } = useUser();
