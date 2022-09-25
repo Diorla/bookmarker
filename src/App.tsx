@@ -1,25 +1,27 @@
-import styled from "styled-components";
+import Link from "./components/link";
 import Form from "./containers/form";
+import Home from "./containers/home";
 import useUser from "./hooks/useUser";
 import signOut from "./services/signOut";
+import spinner from "./assets/spinner.gif";
+import Container from "./components/Container";
 
-const Container = styled.div`
-  background: ${({ theme }) => theme.greyLight1};
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-`;
 function App() {
   const { user, loading } = useUser();
 
-  if (loading) return <Container>This is loading</Container>;
+  if (loading)
+    return (
+      <Container>
+        <img src={spinner} alt="loading" />
+      </Container>
+    );
   if (user?.uid)
     return (
       <Container>
-        <div>Welcome {user?.displayName}</div>
-        <button onClick={() => signOut()}>Sign out</button>
+        <Home user={user} />
+        <Link onClick={() => signOut()} style={{ marginBottom: 4 }}>
+          Sign out
+        </Link>
       </Container>
     );
   return (

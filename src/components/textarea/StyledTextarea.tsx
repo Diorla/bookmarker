@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-export default styled.input`
-  padding: 0.4rem 0.6rem;
+export default styled.textarea`
+  padding: 0.6rem 0.8rem;
   border: none;
   border-radius: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   box-shadow: inset 0.1rem 0.1rem 0.125rem ${({ theme }) => theme.greyLight2},
     inset -0.1rem -0.1rem 0.125rem ${({ theme }) => theme.white};
   background: none;
   font-family: inherit;
   color: ${({ theme }) => theme.black}b3;
+  resize: vertical;
   &::-moz-placeholder {
     color: ${({ theme }) => theme.greyDark};
   }

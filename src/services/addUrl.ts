@@ -1,14 +1,7 @@
 import { getFirestore, setDoc, doc } from "firebase/firestore";
+import TabInfoProps from "../containers/home/TabInfoProps";
 
-interface UrlProps {
-  title: string;
-  url: string;
-  tags: string[];
-  favicon: string;
-  description: string;
-}
-
-const addUrl = async (userId: string, data: UrlProps, docId: string) => {
+const addUrl = async (userId: string, data: TabInfoProps, docId: string) => {
   const db = getFirestore();
   const docRef = doc(db, `users/${userId}/links`, docId);
 

@@ -11,18 +11,18 @@ export default function Button({
 }: ButtonProps) {
   if (variant === "primary")
     return (
-      <PrimaryButton size={size} {...props}>
+      <PrimaryButton size={size} {...props} ref={null}>
         {children}
       </PrimaryButton>
     );
   if (variant === "secondary")
     return (
-      <SecondaryButton size={size} {...props}>
+      <SecondaryButton size={size} {...props} ref={null}>
         {children}
       </SecondaryButton>
     );
   return (
-    <DefaultButton size={size} {...props}>
+    <DefaultButton size={size} {...props} ref={null}>
       {children}
     </DefaultButton>
   );

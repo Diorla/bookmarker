@@ -1,10 +1,16 @@
-import { HTMLAttributes } from "react";
+import { AnchorHTMLAttributes, DetailedHTMLProps, HTMLAttributes } from "react";
 import styled from "styled-components";
 
-interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {}
+// interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
+interface LinkProps
+  extends DetailedHTMLProps<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  > {}
 const StyledLink = styled.a`
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
+  text-decoration: none;
   &:hover {
     color: ${({ theme }) => theme.primaryLight};
   }
@@ -14,5 +20,5 @@ const StyledLink = styled.a`
 `;
 
 export default function Link(props: LinkProps) {
-  return <StyledLink {...props} />;
+  return <StyledLink {...props} ref={null} />;
 }
