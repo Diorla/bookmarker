@@ -30,8 +30,6 @@ export default function Home({ user }: { user: User }) {
 
   const [tag, setTag] = useState("");
 
-  const [showDesc, setShowDesc] = useState(false);
-
   const [isNewUrl, setIsNewUrl] = useState(true);
 
   const [loading, setLoading] = useState(true);
@@ -47,7 +45,7 @@ export default function Home({ user }: { user: User }) {
         const data = list[0] as TabInfoProps;
         if (data) {
           setIsNewUrl(false);
-
+          setModified(false);
           currentInfo = {
             ...currentInfo,
             ...data,
@@ -76,7 +74,7 @@ export default function Home({ user }: { user: User }) {
       })
       .catch((err) => console.log(err));
   };
-  const { title, url, description, tags, pinned } = tabInfo;
+  const { title, url, description, tags } = tabInfo;
   if (loading) return <img src={spinner} alt="loading" />;
   return (
     <div style={{ margin: 8 }}>
@@ -124,47 +122,30 @@ export default function Home({ user }: { user: User }) {
           <Chip
             title={item}
             style={{ margin: 2 }}
-            onClick={() =>
+            onClick={() => {
               setTabInfo({
                 ...tabInfo,
                 tags: [
                   ...tabInfo.tags.slice(0, idx),
                   ...tabInfo.tags.slice(idx + 1),
                 ],
-              })
-            }
+              });
+              setModified(true);
+            }}
             key={idx}
           />
         ))}
       </SpaceEvenly>
-      <Switch
-        label="Pin site"
-        checked={pinned}
-        style={{ marginTop: 8, marginBottom: 4 }}
-        onClick={() => {
-          setTabInfo({
-            ...tabInfo,
-            pinned: !tabInfo.pinned,
-          });
+      <Textarea
+        label="Description"
+        cols={15}
+        rows={3}
+        value={description}
+        onChange={(e) => {
+          setTabInfo({ ...tabInfo, description: e.target.value });
           setModified(true);
         }}
       />
-      <div style={{ marginTop: 8, marginBottom: 8 }}>
-        {showDesc ? (
-          <Textarea
-            label="Description"
-            cols={15}
-            rows={4}
-            value={description}
-            onChange={(e) => {
-              setTabInfo({ ...tabInfo, description: e.target.value });
-              setModified(true);
-            }}
-          />
-        ) : (
-          <Button onClick={() => setShowDesc(true)}>Add description</Button>
-        )}
-      </div>
       <SpaceBetween style={{ margin: 4 }}>
         <Button variant="primary" onClick={save} disabled={!modified}>
           Save
