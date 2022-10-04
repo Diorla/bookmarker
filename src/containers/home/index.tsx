@@ -85,7 +85,7 @@ export default function Home({ user }: { user: User }) {
         <Close onClick={() => window.close()}>×</Close>
       </SpaceBetween>
       <hr />
-      <div style={{ textAlign: "center" }}>{url}</div>
+      <div style={{ textAlign: "center", overflowWrap: "anywhere" }}>{url}</div>
       <Input
         label="Name"
         value={title}
