@@ -1,5 +1,5 @@
 {
-  "name": "bookmarker",
+  "name": "bookmarker_chromium",
   "private": true,
   "version": "1.0.0",
   "description": "For sharing bookmarks across multiple browsers",
@@ -15,6 +15,7 @@
   "author": "Ade Adeola",
   "license": "MIT",
   "dependencies": {
+    "bookmarker-ui": "^0.5.4",
     "dotenv": "^16.0.0",
     "firebase": "^9.9.4",
     "react": "^18.2.0",

@@ -1,21 +1,15 @@
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import getCurrentTabInfo from "../../modules/getCurrentTabInfo";
-import Button from "../../components/button";
-import Chip from "../../components/chip";
-import Input from "../../components/input";
-import Link from "../../components/link";
-import Switch from "../../components/switch";
-import Textarea from "../../components/textarea";
 import TabInfoProps from "./TabInfoProps";
 import getUrl from "../../services/getUrl";
 import addUrl from "../../services/addUrl";
 import { v4 } from "uuid";
 import deleteUrl from "../../services/deleteUrl";
-import spinner from "../../assets/spinner.gif";
 import SpaceBetween from "./SpaceBetween";
 import SpaceEvenly from "./SpaceEvenly";
 import Close from "./Close";
+import { Link, Input, Chip, Textarea, Button, Loader } from "bookmarker-ui";
 
 export default function Home({ user }: { user: User }) {
   const [tabInfo, setTabInfo] = useState<TabInfoProps>({
@@ -75,7 +69,7 @@ export default function Home({ user }: { user: User }) {
       .catch((err) => console.log(err));
   };
   const { title, url, description, tags } = tabInfo;
-  if (loading) return <img src={spinner} alt="loading" />;
+  if (loading) return <Loader />;
   return (
     <div style={{ margin: 8 }}>
       <SpaceBetween>
@@ -133,6 +127,7 @@ export default function Home({ user }: { user: User }) {
               setModified(true);
             }}
             key={idx}
+            disabled={false}
           />
         ))}
       </SpaceEvenly>

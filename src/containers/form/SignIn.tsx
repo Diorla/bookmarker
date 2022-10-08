@@ -1,7 +1,5 @@
+import { Input, Link, Button } from "bookmarker-ui";
 import { useState } from "react";
-import Button from "../../components/button";
-import Input from "../../components/input";
-import Link from "../../components/link";
 import signInWithEmail from "../../services/signInWithEmail";
 
 export default function SignIn({ toggleForm }: { toggleForm: () => void }) {
