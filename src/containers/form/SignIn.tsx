@@ -38,7 +38,7 @@ export default function SignIn({ toggleForm }: { toggleForm: () => void }) {
         placeholder="example@email.com"
         value={value.email}
         errorText={error.email}
-        onChange={(e) => {
+        onChange={(e: { target: { value: string } }) => {
           setValue({
             ...value,
             email: e.target.value,
@@ -53,7 +53,7 @@ export default function SignIn({ toggleForm }: { toggleForm: () => void }) {
         placeholder="∗∗∗∗∗∗∗∗"
         value={value.password}
         errorText={error.password}
-        onChange={(e) => {
+        onChange={(e: { target: { value: string } }) => {
           setValue({
             ...value,
             password: e.target.value,

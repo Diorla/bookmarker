@@ -48,7 +48,7 @@ export default function SignUp({ toggleForm }: { toggleForm: () => void }) {
         placeholder="example@email.com"
         value={value.email}
         errorText={error.email}
-        onChange={(e) => {
+        onChange={(e: { target: { value: string } }) => {
           setValue({
             ...value,
             email: e.target.value,
@@ -63,7 +63,7 @@ export default function SignUp({ toggleForm }: { toggleForm: () => void }) {
         placeholder="∗∗∗∗∗∗∗∗"
         value={value.password}
         errorText={error.password}
-        onChange={(e) => {
+        onChange={(e: { target: { value: string } }) => {
           setValue({
             ...value,
             password: e.target.value,
@@ -78,7 +78,7 @@ export default function SignUp({ toggleForm }: { toggleForm: () => void }) {
         placeholder="∗∗∗∗∗∗∗∗"
         value={value.repassword}
         errorText={error.repassword}
-        onChange={(e) => {
+        onChange={(e: { target: { value: string } }) => {
           setValue({
             ...value,
             repassword: e.target.value,

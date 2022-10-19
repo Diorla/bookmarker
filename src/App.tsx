@@ -9,7 +9,7 @@ const Form = React.lazy(() => import("./containers/form"));
 function App() {
   const { user, loading } = useUser();
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader fullHeight />;
   if (user?.uid)
     return (
       <Container style={{ alignItems: "center" }}>
@@ -20,7 +20,7 @@ function App() {
       </Container>
     );
   return (
-    <Container style={{ alignItems: "center" }}>
+    <Container fullHeight alignCenter justifyCenter>
       <Form />
     </Container>
   );

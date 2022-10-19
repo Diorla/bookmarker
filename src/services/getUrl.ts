@@ -12,7 +12,6 @@ export default async function getUrl(
   url: string,
   callback: (arg: DocumentData[]) => void
 ) {
-  console.log({ userId, url });
   const db = getFirestore();
   const q = query(
     collection(db, `users/${userId}/links`),
@@ -24,7 +23,6 @@ export default async function getUrl(
   querySnapshot.forEach((doc) => {
     list.push(doc.data());
   });
-  // const list = await getUrl(user.uid, url);
-  // const data = list[0];
+
   callback(list);
 }

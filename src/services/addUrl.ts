@@ -11,11 +11,12 @@ const addUrl = async (userId: string, data: TabInfoProps, docId: string) => {
     tags = [],
     favicon = "",
     description = "",
+    collection = "",
   } = data;
 
   return setDoc(
     docRef,
-    { id: docId, title, url, tags, favicon, description },
+    { id: docId, title, url, tags, favicon, description, collection },
     { merge: true }
   );
 };

@@ -6,4 +6,5 @@ export default interface TabInfoProps {
   tags: string[];
   description: string;
   pinned: boolean;
+  collection: string;
 }
