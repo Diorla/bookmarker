@@ -9,10 +9,10 @@ import SpaceBetween from "./SpaceBetween";
 import SpaceEvenly from "./SpaceEvenly";
 import Close from "./Close";
 import { Link, Input, Chip, Textarea, Button, Loader } from "bookmarker-ui";
-import { UserProps } from "../../hooks/useUser";
 import SelectCollection from "./SelectCollection";
+import { useUser } from "../../userContext";
 
-export default function Home({ user }: { user: UserProps }) {
+export default function Home() {
   const [tabInfo, setTabInfo] = useState<TabInfoProps>({
     title: "",
     favicon: "",
@@ -24,14 +24,11 @@ export default function Home({ user }: { user: UserProps }) {
     collection: "",
   });
 
+  const { user } = useUser();
   const [tag, setTag] = useState("");
-
   const [isNewUrl, setIsNewUrl] = useState(true);
-
   const [loading, setLoading] = useState(true);
-
   const [modified, setModified] = useState(true);
-
   const [addNewCollection, setAddNewCollection] = useState(false);
   const [newCollection, setNewCollection] = useState("");
 
@@ -65,6 +62,7 @@ export default function Home({ user }: { user: UserProps }) {
       })
       .catch((err) => console.log(err));
   };
+
   const remove = () => {
     deleteUrl(user.uid, tabInfo.id)
       .then(() => {
@@ -75,9 +73,8 @@ export default function Home({ user }: { user: UserProps }) {
   };
 
   const { title, url, description, tags, collection } = tabInfo;
-
   const { collections = [] } = user;
-  console.log(Array.isArray(collections));
+
   if (loading) return <Loader style={{ height: 300 }} />;
   return (
     <div style={{ margin: 8 }}>
