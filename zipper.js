@@ -15,7 +15,7 @@ const archive = archiver("zip", {
 // 'close' event is fired only when a file descriptor is involved
 output.on("close", function () {
   console.log(archive.pointer() + " bytes");
-  console.log("Files has been zipped.");
+  console.info("Files has been zipped.");
 });
 
 // This event is fired when the data source is drained no matter what was the data source.
