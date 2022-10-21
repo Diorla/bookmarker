@@ -12,7 +12,7 @@ function App() {
   if (loading) return <Loader fullHeight />;
   if (user?.uid)
     return (
-      <Container style={{ alignItems: "center" }}>
+      <Container alignCenter>
         <Home user={user} />
         <Link onClick={() => signOut()} style={{ marginBottom: 4 }}>
           Sign out

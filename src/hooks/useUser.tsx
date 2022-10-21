@@ -14,17 +14,18 @@ const getCollections = async (
   const docRef = doc(db, `users/${userId}`);
 
   onSnapshot(docRef, (doc) => {
-    const { collections = [] } = doc.data() as { collections: string[] };
+    const data = doc.data() || {};
+    const { collections = [] } = data as { collections: string[] };
     callback(collections);
   });
 };
 
-export interface UpdatedUser extends User {
+export interface UserProps extends User {
   collections: string[];
 }
 
 export default function useUser() {
-  const [user, setUser] = useState<UpdatedUser | null>(null);
+  const [user, setUser] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
