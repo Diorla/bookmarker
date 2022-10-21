@@ -2,6 +2,9 @@
 rm -r -f bookmarker.zip
 rm -r -f build/
 
+# run build
+npm run build
+
 # create target folder
 mkdir build/
 

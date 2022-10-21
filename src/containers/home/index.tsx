@@ -1,5 +1,5 @@
 import { SetStateAction, useEffect, useState } from "react";
-import getCurrentTabInfo from "../../modules/getCurrentTabInfo";
+import getCurrentTabInfo from "./getCurrentTabInfo";
 import TabInfoProps from "./TabInfoProps";
 import getUrl from "../../services/getUrl";
 import addUrl from "../../services/addUrl";
