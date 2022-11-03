@@ -1,7 +1,7 @@
 {
-  "name": "bookmarker_chromium",
+  "name": "bookmarker",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "For sharing bookmarks across multiple browsers",
   "scripts": {
     "test": "jest",

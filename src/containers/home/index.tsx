@@ -11,6 +11,7 @@ import Close from "./Close";
 import { Link, Input, Chip, Textarea, Button, Loader } from "bookmarker-ui";
 import SelectCollection from "./SelectCollection";
 import { useUser } from "../../userContext";
+import truncateText from "./truncateText";
 
 export default function Home() {
   const [tabInfo, setTabInfo] = useState<TabInfoProps>({
@@ -85,7 +86,12 @@ export default function Home() {
         <Close onClick={() => window.close()}>×</Close>
       </SpaceBetween>
       <hr />
-      <div style={{ textAlign: "center", overflowWrap: "anywhere" }}>{url}</div>
+      <div
+        style={{ textAlign: "center", overflowWrap: "anywhere" }}
+        title={url}
+      >
+        {truncateText(url)}
+      </div>
       <Input
         label="Name"
         value={title}
