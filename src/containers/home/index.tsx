@@ -73,7 +73,13 @@ export default function Home() {
       .catch((err) => console.log(err));
   };
 
-  const { title, url, description, tags, collection } = tabInfo;
+  const {
+    title = "",
+    url = "",
+    description = "",
+    tags = [],
+    collection = "",
+  } = tabInfo || {};
   const { collections = [] } = user;
 
   if (loading) return <Loader style={{ height: 300 }} />;

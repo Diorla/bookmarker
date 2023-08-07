@@ -9,9 +9,9 @@ export default async function getCurrentTabInfo(
     (await chrome.tabs.query(queryOptions)) ||
     (await browser.tabs.query(queryOptions));
 
-  const title = tab.title || "";
-  const url = tab.url || "";
-  const favicon = tab.favIconUrl || "";
+  const title = tab?.title || "";
+  const url = tab?.url || "";
+  const favicon = tab?.favIconUrl || "";
 
   callback({
     title,
