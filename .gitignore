@@ -27,3 +27,5 @@ temp
 chrome_build
 firefox_build
 *.zip
+
+.env

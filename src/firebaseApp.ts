@@ -2,13 +2,13 @@ import { initializeApp, getApps } from "firebase/app";
 
 const firebaseApp = () => {
   const clientCredentials = {
-    apiKey: "AIzaSyCQ0F8yhR16Y3y8IGgFGNltgXDVJ2XJNW8",
-    authDomain: "crss-brwsr-bkmrk.firebaseapp.com",
-    projectId: "crss-brwsr-bkmrk",
-    storageBucket: "crss-brwsr-bkmrk.appspot.com",
-    messagingSenderId: "965938222051",
-    appId: "1:965938222051:web:08fca67665693d709d06d6",
-    measurementId: "G-KTDXDQZ0DC",
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
+    measurementId: import.meta.env.VITE_MEASUREMENT_ID,
   };
 
   if (getApps().length <= 0) {
@@ -18,3 +18,5 @@ const firebaseApp = () => {
 };
 
 export default firebaseApp;
+
+import.meta.env;
